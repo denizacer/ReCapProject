@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 
@@ -56,14 +57,29 @@ namespace DataAccess.Concrete.InMemory
             return _cars;
         }
 
-         List<Car> ICarDal.GetByIdy(int CarId)
+       /* List<Car> ICarDal.GetByIdy(int CarId)
         {
             return _cars.Where(c => c.CarId == CarId).ToList();
-        }
+        }*/
 
         public void Update(Car car)
         {
             Car carToUpdate = _cars.SingleOrDefault(c => c.CarId == car.CarId); ;
+        }
+
+        public List<Car> GetById(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        Car IEntityRepository<Car>.Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
         }
     }
 }

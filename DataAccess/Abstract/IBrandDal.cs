@@ -5,11 +5,7 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface ICarDal : IEntityRepository<Car>
+    public interface IBrandDal : IEntityRepository<Brand>
     {
-        //GetById, GetAll, 
-        // IEntityRepository<Car> den miras aldı
-
-
     }
 }
