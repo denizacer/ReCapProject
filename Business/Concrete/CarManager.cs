@@ -28,8 +28,12 @@ namespace Business.Concrete
                 Console.WriteLine("Araba Eklenemedi. Kontrol ediniz.");
             }
         }
-        
 
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+            Console.WriteLine("Araba Silindi.");
+        }
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
@@ -43,6 +47,12 @@ namespace Business.Concrete
         public List<Car> GetAllByColorId(int id)
         {
             return _carDal.GetAll(p => p.ColorId == id);
+        }
+
+        public void Update(Car car)
+        {
+            _carDal.Update(car);
+            Console.WriteLine("Araba Güncellendi.");
         }
     }
 }

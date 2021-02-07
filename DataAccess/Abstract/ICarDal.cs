@@ -1,6 +1,9 @@
-﻿using Entities.Concrete;
+﻿using Core.DataAccess;
+using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Abstract
@@ -9,7 +12,7 @@ namespace DataAccess.Abstract
     {
         //GetById, GetAll, 
         // IEntityRepository<Car> den miras aldı
-
+        List<CarDetailDto> GetCarDetails();
 
     }
 }

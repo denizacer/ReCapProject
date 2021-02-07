@@ -9,8 +9,11 @@ namespace Business.Abstract
     {
         List<Car> GetAll();
         void Add(Car car);
+        void Delete(Car car);
+        void Update(Car car);
         List<Car> GetAllByColorId(int id);
         List<Car> GetAllByBrandId(int id);
-
+       
+       
     }
 }
