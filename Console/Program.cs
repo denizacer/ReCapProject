@@ -14,7 +14,20 @@ namespace Console
         {
             CarTest();
             Crud();
+            AddCustomer();
+        }
 
+        private static void AddCustomer()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            Customer newCustomer = new Customer
+            {
+                CustomerId = 1,
+                UserId = 1,
+                CompanyName = "abc"
+            };
+            customerManager.Add(newCustomer);
+            System.Console.WriteLine(newCustomer);
         }
 
         private static void Crud()
@@ -59,13 +72,24 @@ namespace Console
 
         private static void CarTest()
         {
-            System.Console.WriteLine("CarId" + " " + "BrandId" + " " + "ColorId" + " " + "ModelYear" + " " + "DailyPrice" + " " + "Description");
+            //System.Console.WriteLine("CarId" + " " + "BrandId" + " " + "ColorId" + " " + "ModelYear" + " " + "DailyPrice" + " " + "Description");
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetAll())
+            //var result = productManager.GetProductDetails();
+            var result = carManager.GetCarDetails();
+
+            if (result.Success == true)
+            { 
+                foreach (var car in result.Data)
             {
-                System.Console.WriteLine(car.CarId + "       " + car.BrandId + "        " + car.ColorId + "     " + car.ModelYear + "      " + car.DailyPrice + "       " + car.Description);
-              
+                    // System.Console.WriteLine(car.CarId + "       " + car.BrandId + "        " + car.ColorId + "     " + car.ModelYear + "      " + car.DailyPrice + "       " + car.Description);
+                    System.Console.WriteLine(car.BrandName+"  /   "+car.ColorName + "  /   " +car.DailyPrice + "  /   " +car.Description);
             }
+            }
+            else
+            {
+                System.Console.WriteLine(result.Message);
+            }
+
         }
     }
 }
