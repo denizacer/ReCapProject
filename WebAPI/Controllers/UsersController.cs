@@ -39,6 +39,7 @@ namespace WebAPI.Controllers
             if (result.Success) { return Ok(result); }
             return BadRequest();
         }
+   
         [HttpPost("delete")]
         public IActionResult Delete(User user)
         {
@@ -53,5 +54,21 @@ namespace WebAPI.Controllers
             if (result.Success) { return Ok(result); }
             return BadRequest();
         }
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult Get(int id)
+        {
+            var result = _userService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result.Message);
+        }
     }
-}
+
+    
+       
+ }
+

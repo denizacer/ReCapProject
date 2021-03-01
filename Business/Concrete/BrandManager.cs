@@ -26,7 +26,7 @@ namespace Business.Concrete
 
         public IResult Delete(Brand brand)
         {
-            _brandDal.Add(brand);
+            _brandDal.Delete(brand);
 
             return new SuccesResult((Messages.CarDeleted));
         }
@@ -49,7 +49,7 @@ namespace Business.Concrete
 
         public IResult Update(Brand brand)
         {
-            _brandDal.Add(brand);
+            _brandDal.Update(brand);
 
             return new SuccesResult((Messages.CarUptaded));
         }
