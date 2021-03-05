@@ -1,5 +1,6 @@
 using Business.Abstract;
 using Business.Concrete;
+using Core.DependencyResolvers;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
@@ -20,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Extensions;
 
 namespace WebAPI
 {
@@ -48,7 +50,7 @@ namespace WebAPI
             //services.AddSingleton<IRentalService, RentalManager>();            //services.AddSingleton<IRentalDal, EfRentalDal>();
 
             //services.AddSingleton<IUserService, UserManager>();            //services.AddSingleton<IUserDal, EfUserDal>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//ekledim
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -65,7 +67,9 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });//ekledim
-            ServiceTool.Create(services);
+            services.AddDependencyResolvers(new ICoreModule[] {
+                new CoreModule()
+            });
 
         }
 
